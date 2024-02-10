@@ -208,6 +208,9 @@ public class CardDeliveryFormTest {
         // Устанавливаем чекбокс
         $("[data-test-id=agreement]").click();
 
+        // Ожидаем исчезновения наложения
+        $(".popup__content").should(disappear);
+
         // Нажимаем кнопку "Забронировать"
         $$("button").find(exactText("Забронировать")).click();
 
@@ -215,6 +218,8 @@ public class CardDeliveryFormTest {
         $(withText("Поле обязательно для заполнения"))
                 .shouldBe(visible, Duration.ofSeconds(15));
     }
+
+
 
     @Test
     void shouldShowErrorForEmptyDate() {
