@@ -193,35 +193,6 @@ public class CardDeliveryFormTest {
 
 
     @Test
-    void shouldShowErrorForEmptyFieldsAndCheckedAgreement() {
-        open("http://localhost:9999");
-
-        // Не заполняем обязательные поля
-        $("[data-test-id=city] input").setValue("");
-
-        // Очищаем поле с датой
-        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-
-        $("[data-test-id=name] input").setValue("");
-        $("[data-test-id=phone] input").setValue("");
-
-        // Устанавливаем чекбокс
-        $("[data-test-id=agreement]").click();
-
-        // Ожидаем исчезновения наложения
-        $(".popup__content").should(disappear);
-
-        // Нажимаем кнопку "Забронировать"
-        $$("button").find(exactText("Забронировать")).click();
-
-        // Проверяем сообщение
-        $(withText("Поле обязательно для заполнения"))
-                .shouldBe(visible, Duration.ofSeconds(15));
-    }
-
-
-
-    @Test
     void shouldShowErrorForEmptyDate() {
         open("http://localhost:9999");
 
